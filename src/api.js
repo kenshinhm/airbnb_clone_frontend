@@ -10,7 +10,7 @@ if (env === 'development') {
     url = process.env.REACT_APP_API_DEP;
 }
 const api = axios.create({
-    baseURL: url
+    baseURL: 'http://airbnb-clone.ap-northeast-2.elasticbeanstalk.com/'
 });
 
 api.interceptors.request.use(function (config) {
