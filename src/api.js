@@ -5,12 +5,12 @@ const env = process.env.NODE_ENV;
 let url = null;
 
 if (env === 'development') {
-    url = process.env.REACT_APP_API_DEV;
+    url = 'http://localhost:8000/';
 } else {
-    url = process.env.REACT_APP_API_DEP;
+    url = 'https://airbnbclone-backend.com/';
 }
 const api = axios.create({
-    baseURL: 'http://airbnb-clone.ap-northeast-2.elasticbeanstalk.com/'
+    baseURL: url
 });
 
 api.interceptors.request.use(function (config) {
