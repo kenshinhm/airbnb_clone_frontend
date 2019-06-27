@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from "prop-types";
-import styles from './styles.scss';
+import styles from 'components/Navigation/PublicLink/Login/styles.scss';
 import {ReactComponent as Close} from 'svg/close.svg';
 import {ReactComponent as Google} from 'svg/google.svg';
 
@@ -21,12 +21,13 @@ const Login = props => {
                 <form className={styles.form} onSubmit={props.onSubmit}>
                     <input className={styles.input}
                            name='email'
-                           placeholder='Email Address'
+                           placeholder='guest@airbnb.com'
                            value={props.email}
                            onChange={props.onChange}/>
                     <input className={styles.input}
+                           type='password'
                            name='password'
-                           placeholder='Password'
+                           placeholder='guestairbnb'
                            value={props.password}
                            onChange={props.onChange}/>
                     <input className={styles.button}

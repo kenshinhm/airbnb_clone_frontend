@@ -1,5 +1,5 @@
 import React from 'react';
-import Reservation from './presenter';
+import Reservation from 'components/Home/Reservation/presenter.js';
 
 class Container extends React.Component {
 

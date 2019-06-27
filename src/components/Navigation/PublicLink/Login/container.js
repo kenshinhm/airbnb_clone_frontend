@@ -1,6 +1,16 @@
 import React from 'react';
-import Login from './presenter';
+import Login from 'components/Navigation/PublicLink/Login/presenter.js';
 import * as PropTypes from "prop-types";
+import {dispatchLogin} from "redux/user/actions.js";
+import {connect} from "react-redux";
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return {
+        dispatchLogin: (email, password) => {
+            dispatch(dispatchLogin(email, password));
+        }
+    };
+};
 
 class Container extends React.Component {
 
@@ -36,4 +46,4 @@ class Container extends React.Component {
     };
 }
 
-export default Container;
+export default connect(null, mapDispatchToProps)(Container);

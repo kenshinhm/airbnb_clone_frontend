@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './styles.scss';
 import Recommendation from "components/Home/Recommendation/container.js";
 import * as PropTypes from "prop-types";
-import Reservation from "components/Reservation";
+import Reservation from "components/Home/Reservation/container.js";
 import RoomByCity from "components/Home/RoomByCity/container.js";
 
 

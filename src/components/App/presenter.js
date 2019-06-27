@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './styles.scss';
-import Navigation from "components/Navigation";
+import Navigation from "components/Navigation/container.js";
 import Home from "components/Home/container.js";
 import {Route, Switch} from "react-router-dom";
 import RoomDetail from "components/RoomDetail/container.js";

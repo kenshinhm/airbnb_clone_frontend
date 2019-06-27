@@ -1,10 +1,10 @@
 import React from 'react';
-import styles from 'components/shared/Sample/styles.scss';
+import styles from './styles.scss';
 
-const Sample = () => {
+const Presenter = () => {
     return (
         <div>hello</div>
     );
 };
 
-export default Sample;
+export default Presenter;

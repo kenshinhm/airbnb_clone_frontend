@@ -7,7 +7,7 @@ import * as PropTypes from "prop-types";
 import {DateRangePicker,} from "react-dates";
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
-import 'components/Reservation/_datepicker.css';
+import 'components/Home/Reservation/_datepicker.css';
 import styles from './styles.scss';
 
 class Count extends React.Component {
@@ -119,12 +119,12 @@ const Reservation = props => {
                         {props.guestClicked ? <Arrowup/> : <ArrowDown/>}
                     </button>
                     {props.guestClicked ?
-                     <GuestModal countAdult={props.countAdult}
-                                 countChildren={props.countChildren}
-                                 countInfant={props.countInfant}
-                                 updateCount={props.updateCount}
-                                 onClickGuest={props.onClickGuest}/>
-                                        : null}
+                        <GuestModal countAdult={props.countAdult}
+                                    countChildren={props.countChildren}
+                                    countInfant={props.countInfant}
+                                    updateCount={props.updateCount}
+                                    onClickGuest={props.onClickGuest}/>
+                        : null}
                 </div>
                 <div className={styles.formRow}>
                     <input className={styles.submitButton}

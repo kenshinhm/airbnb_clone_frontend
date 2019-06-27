@@ -1,6 +1,23 @@
 import React from 'react';
-import Navigation from './presenter';
+import Navigation from 'components/Navigation/presenter.js';
 import * as PropTypes from "prop-types";
+import {dispatchLogout} from "redux/user/actions.js";
+import {connect} from "react-redux";
+
+const mapStateToProps = (state, ownProps) => {
+    const {user: {isLoggedIn}} = state;
+    return {
+        isLoggedIn,
+    };
+};
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return {
+        dispatchLogout: () => {
+            dispatch(dispatchLogout());
+        }
+    };
+};
 
 class Container extends React.Component {
 
@@ -9,45 +26,11 @@ class Container extends React.Component {
         isLoggedIn: PropTypes.bool.isRequired,
     };
 
-    state = {
-        onLogin: false,
-        onSignUp: false,
-    };
-
-    componentWillReceiveProps(nextProps, nextContext) {
-        if (nextProps.isLoggedIn) {
-            this.setState({
-                ...this.state,
-                onLogin: false
-            });
-        }
-    }
-
     render() {
         return (
-            <Navigation {...this.props}
-                        {...this.state}
-                        openLogin={this._openLogin}
-                        closeLogin={this._closeLogin}
-            />
+            <Navigation {...this.props}/>
         );
     }
-
-    _openLogin = () => {
-        this.setState({
-            ...this.state,
-            onLogin: true
-        });
-    };
-
-    _closeLogin = () => {
-        this.setState({
-            ...this.state,
-            onLogin: false
-        });
-    };
-
-
 }
 
-export default Container;
+export default connect(mapStateToProps, mapDispatchToProps)(Container);

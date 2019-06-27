@@ -1,45 +1,12 @@
 import React from 'react';
-import styles from './styles.scss';
+import styles from 'components/Navigation/styles.scss';
 import {ReactComponent as Logo} from 'svg/logo.svg';
 import {ReactComponent as Search} from 'svg/search.svg';
-import Login from "components/Login";
+import PublicLink from "components/Navigation/PublicLink/container.js";
+import PrivateLink from "components/Navigation/PrivateLink/container.js";
 import * as PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 
-const PublicLink = (props) => {
-    return (
-        <div className={styles.columnLink}>
-            <button>
-                <div className={styles.link}>호스팅</div>
-            </button>
-            <button>
-                <div className={styles.link}>도움말</div>
-            </button>
-            <button>
-                <div className={styles.link}>회원 가입</div>
-            </button>
-            <button onClick={props.openLogin}>
-                <div className={styles.link}>로그인</div>
-            </button>
-        </div>
-    );
-};
-
-const PrivateLink = (props) => {
-    return (
-        <div className={styles.columnLink}>
-            <button>
-                <div className={styles.link}>호스팅</div>
-            </button>
-            <button>
-                <div className={styles.link}>도움말</div>
-            </button>
-            <button onClick={props.dispatchLogout}>
-                <div className={styles.link}>로그아웃</div>
-            </button>
-        </div>
-    );
-};
 
 const Navigation = (props) => (
     <div className={styles.container}>
@@ -59,7 +26,6 @@ const Navigation = (props) => (
                 </div>
             </div>
             {props.isLoggedIn ? <PrivateLink {...props}/> : <PublicLink {...props}/>}
-            {props.onLogin && <Login closeLogin={props.closeLogin}/>}
         </div>
     </div>
 );
