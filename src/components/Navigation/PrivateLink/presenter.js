@@ -1,15 +1,18 @@
 import React from 'react';
 import styles from './styles.scss';
+import Profile from './Profile/container.js';
 
 const Presenter = (props) => {
     return (
         <div className={styles.container}>
-            <button>
-                <div className={styles.link}>도움말</div>
-            </button>
-            <button onClick={props.dispatchLogout}>
-                <div className={styles.link}>로그아웃</div>
-            </button>
+            <div className={styles.link}>
+                <button>
+                    도움말
+                </button>
+            </div>
+            <div className={styles.link}>
+                <Profile {...props}/>
+            </div>
         </div>
     );
 };

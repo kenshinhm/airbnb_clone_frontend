@@ -31,11 +31,7 @@ const Navigation = (props) => (
 );
 
 Navigation.propTypes = {
-    onLogin: PropTypes.bool.isRequired,
-    onSignUp: PropTypes.bool.isRequired,
     isLoggedIn: PropTypes.bool.isRequired,
-    openLogin: PropTypes.func.isRequired,
-    closeLogin: PropTypes.func.isRequired,
     dispatchLogout: PropTypes.func.isRequired,
 };
 
