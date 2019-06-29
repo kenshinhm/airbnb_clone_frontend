@@ -4,7 +4,6 @@ import {connect} from "react-redux";
 import api from "api.js";
 import * as PropTypes from "prop-types";
 
-
 const mapStateToProps = (state, ownProps) => {
     const {user: {isLoggedIn}} = state;
     return {
@@ -26,7 +25,7 @@ class Reviews extends React.Component {
 
     state = {
         userReview: '',
-        userRating: '',
+        userRating: '5.0',
     };
 
     render() {
@@ -62,23 +61,29 @@ class Reviews extends React.Component {
     _onUserReviewSubmit = (evt) => {
 
         evt.preventDefault();
-        const roomId = this.props.roomId;
 
-        const data = JSON.stringify({
-            message: this.state.userReview,
-            rating: this.state.userRating,
-        });
+        if (this.props.isLoggedIn) {
+            const roomId = this.props.roomId;
 
-        api.post(`rooms/${roomId}/reviews/`, data)
-           .then(response => {
-               // console.log(response);
-               if (response.status === 201) {
-                   this.props.getApi();
-               } else {
-                   console.log(`${response.status}: ${response.statusText}`);
-               }
-           })
-           .catch(err => console.log(err));
+            const data = JSON.stringify({
+                message: this.state.userReview,
+                rating: this.state.userRating,
+            });
+
+            api.post(`rooms/${roomId}/reviews/`, data)
+               .then(response => {
+                   // console.log(response);
+                   if (response.status === 201) {
+                       this.props.getApi();
+                   } else {
+                       console.log(`${response.status}: ${response.statusText}`);
+                   }
+               })
+               .catch(err => console.log(err));
+        } else {
+            alert("로그인해 주세요 !");
+        }
+
     };
 
     _onUserReviewDelete = reviewId => {

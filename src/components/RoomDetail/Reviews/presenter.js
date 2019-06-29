@@ -15,23 +15,19 @@ const Presenter = props => {
                     <Review key={index} review={review}
                             onUserReviewDelete={props.onUserReviewDelete}/>)}
             </div>
-            {props.isLoggedIn ?
-                <form className={styles.reviewWriteContainer}
-                      onSubmit={props.onUserReviewSubmit}>
-                    <div className={styles.row}>
-                        <label>평점</label>
-                        <input placeholder='5.0'
-                               onChange={props.onUserRatingChange}
-                               value={props.userRating}/>
-                    </div>
-                    <textarea placeholder='소중한 후기를 남겨주세요'
-                              value={props.userReview}
-                              onChange={props.onUserReviewChange}/>
-                    <input type='submit' value='쓰기'/>
-                </form>
-                :
-                null
-            }
+            <form className={styles.reviewWriteContainer}
+                  onSubmit={props.onUserReviewSubmit}>
+                <div className={styles.row}>
+                    <label>평점</label>
+                    <input placeholder='5.0'
+                           onChange={props.onUserRatingChange}
+                           value={props.userRating}/>
+                </div>
+                <textarea placeholder='소중한 후기를 남겨주세요'
+                          value={props.userReview}
+                          onChange={props.onUserReviewChange}/>
+                <input type='submit' value='쓰기'/>
+            </form>
         </div>
     );
 };
