@@ -7,7 +7,7 @@ let url = null;
 if (env === 'development') {
     url = 'http://localhost:8000/';
 } else {
-    url = 'https://airbnbclone-backend.com/';
+    url = 'https://yjhbackend.com';
 }
 const api = axios.create({
     baseURL: url
