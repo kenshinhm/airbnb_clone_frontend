@@ -69,7 +69,7 @@ const Presenter = props => {
                         {
                             props.cityList.map((city, index) => (
                                 <li key={index} className={cardStyle}>
-                                    <Link to={`${city}/rooms`} style={{textDecoration: 'none'}}>
+                                    <Link to={`rooms/${city}`} style={{textDecoration: 'none'}}>
                                         <div style={{backgroundImage: `url(${cityList[city]})`}}
                                              className={styles.img}>
                                             <div className={styles.text}>

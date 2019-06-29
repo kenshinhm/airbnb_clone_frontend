@@ -2,6 +2,7 @@ import React from 'react';
 import Presenter from "./presenter.js";
 import {dispatchLoading} from "redux/dom/actions.js";
 import {connect} from 'react-redux';
+import * as moment from 'moment';
 
 
 const mapDispatchToProps = (dispatch, ownProps) => {
@@ -19,8 +20,10 @@ const mapStateToProps = (state, ownProps) => {
 
 class RoomList extends React.Component {
 
+    _isMounted = false;
+
     state = {
-        city: '',
+        query: '',
         guestCount: 0,
         startPrice: 0,
         endPrice: 200000,
@@ -34,16 +37,68 @@ class RoomList extends React.Component {
         total_reviews: 0,
     };
 
+    _setState = (state, callback) => {
+        if (this._isMounted) {
+            if (callback) {
+                this.setState(state, callback);
+            } else {
+                this.setState(state);
+            }
+        }
+    };
+
     componentWillMount() {
-        const {match: {params: {city}}} = this.props;
-        this.setState({
-            city
-        });
+
         window.addEventListener('scroll', this._scroll);
+        this._isMounted = true;
+
+        // console.log(this.props);
+
+        const {match: {params: {query}}} = this.props;
+
+        let guestCount = 0;
+        let startDate = '';
+        let endDate = '';
+        if (this.props.location.state) {
+
+            const state = this.props.location.state;
+
+            if (state.guestCount > 0) {
+                guestCount = Number(state.guestCount);
+            }
+
+            if (state.startDate) {
+                startDate = moment(new Date(state.startDate));
+            }
+
+            if (state.endDate) {
+                endDate = moment(new Date(state.endDate));
+            }
+        }
+
+        this._setState({
+            query,
+            guestCount,
+            startDate,
+            endDate,
+        });
     }
 
     componentWillUnmount() {
+        this._isMounted = false;
         window.removeEventListener('scroll', this._scroll);
+    }
+
+    componentWillReceiveProps(nextProps, nextContext) {
+
+        const {match: {params: {query}}} = nextProps;
+
+        if (query && query !== this.state.query) {
+            this._setState({
+                query
+            });
+            this._refresh();
+        }
     }
 
     render() {
@@ -60,7 +115,7 @@ class RoomList extends React.Component {
     _updateGuestCount = guestCount => {
 
         if (guestCount !== this.state.guestCount) {
-            this.setState({
+            this._setState({
                 guestCount
             }, () => this._refresh());
         }
@@ -70,7 +125,7 @@ class RoomList extends React.Component {
 
         if (startPrice !== this.state.startPrice
             || endPrice !== this.state.endPrice) {
-            this.setState({
+            this._setState({
                 startPrice,
                 endPrice,
             }, () => this._refresh());
@@ -78,11 +133,11 @@ class RoomList extends React.Component {
     };
 
     _refresh = () => {
-        this.setState({
+        this._setState({
             offset: -1,
             count: 0,
         }, () => {
-            setTimeout(() => this.setState({
+            setTimeout(() => this._setState({
                 offset: 0
             }), 100);
         });
@@ -93,7 +148,7 @@ class RoomList extends React.Component {
 
         // console.log(data);
 
-        this.setState({
+        this._setState({
             count: data.count,
             average_price: data.average_price,
             average_rating: data.average_rating,
@@ -119,7 +174,7 @@ class RoomList extends React.Component {
                 // console.log(offset);
                 // console.log((offset + 1) * limit);
 
-                this.setState({
+                this._setState({
                     offset: offset + 1
                 });
             }

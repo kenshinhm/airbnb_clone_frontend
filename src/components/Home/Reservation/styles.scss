@@ -64,7 +64,7 @@
         .form-row {
             display: flex;
             flex-direction: column;
-            
+            position: relative;
         }
         
         .form-label {
@@ -74,6 +74,8 @@
         }
         
         .form-input {
+            font-size: $small-font-size;
+            color: $dark-grey;
             @include plainInput();
         }
         

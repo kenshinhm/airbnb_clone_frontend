@@ -9,7 +9,6 @@ import './_datepicker.css';
 import styles from './styles.scss';
 import GuestPicker from "components/shared/GuestPicker/container.js";
 
-
 const Presenter = props => {
 
     const position = props.sticky ? 'fixed' : 'relative';

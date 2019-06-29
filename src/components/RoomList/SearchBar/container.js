@@ -29,6 +29,33 @@ class SearchBar extends React.Component {
         endPrice: 200000,
     };
 
+    componentWillMount() {
+
+        if (this.props.guestCount > 0) {
+            this.setState({
+                guestPickerClicked: false,
+                guestPickerOn: true,
+                guestCount: this.props.guestCount,
+                stringGuests: `게스트 ${this.props.guestCount}명`,
+            });
+        }
+
+        if (this.props.startDate && this.props.endDate) {
+
+            let stringDate = `${this.props.startDate.format("M월 D일")} - `;
+            stringDate += `${this.props.endDate.format("M월 D일")}`;
+
+            this.setState({
+                startDate: this.props.startDate,
+                endDate: this.props.endDate,
+                stringDate,
+                dayPickerClicked: false,
+                dayPickerOn: true,
+            });
+        }
+
+    }
+
     //// DatePicker
     _onClickDayPicker = (evt) => {
         if (evt) {

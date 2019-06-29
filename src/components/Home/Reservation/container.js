@@ -1,79 +1,95 @@
 import React from 'react';
-import Reservation from 'components/Home/Reservation/presenter.js';
+import Presenter from 'components/Home/Reservation/presenter.js';
+import {withRouter} from "react-router-dom";
 
 class Container extends React.Component {
 
     state = {
-        guestClicked: false,
-
+        guestPickerClicked: false,
         stringGuests: "인원",
-
-        countAdult: 0,
-        countChildren: 0,
-        countInfant: 0,
+        guestCount: 0,
 
         startDate: null,
         endDate: null,
         focusedInput: null,
+
+        location: "",
     };
 
     render() {
         return (
-            <Reservation {...this.props}
-                         {...this.state}
-                         onClickGuest={this._onClickGuest}
-                         updateCount={this._updateCount}
-                         onDatesChange={this._onDatesChange}
-                         onFocusChange={this._onFocusChange}/>
+            <Presenter {...this.props}
+                       {...this.state}
+                       onClickGuestPicker={this._onClickGuestPicker}
+                       onUpdateGuestPicker={this._onUpdateGuestPicker}
+                       onChangeDates={this._onChangeDates}
+                       onChangeFocus={this._onChangeFocus}
+                       onChangeLocation={this._onChangeLocation}
+                       onClickSubmit={this._onClickSubmit}
+            />
         );
     }
 
-    _onClickGuest = evt => {
+    _onClickSubmit = (evt) => {
         evt.preventDefault();
+
+        if (this.state.location) {
+
+            let startDate = '';
+            let endDate = '';
+
+            if (this.state.startDate) {
+                startDate = this.state.startDate.toString();
+            }
+            if (this.state.endDate) {
+                endDate = this.state.endDate.toString();
+            }
+
+            this.props.history.push({
+                pathname: `/rooms/${this.state.location}`,
+                state: {
+                    guestCount: this.state.guestCount,
+                    startDate,
+                    endDate,
+                },
+            });
+        }
+    };
+
+    _onChangeLocation = evt => {
         this.setState({
-            ...this.state,
-            guestPickerClicked: !this.state.guestClicked,
+            location: evt.target.value,
         });
     };
 
-    _onDatesChange = ({startDate, endDate}) => {
+    _onClickGuestPicker = (evt) => {
+        if (evt) {
+            evt.preventDefault();
+        }
+
+        this.setState({
+            guestPickerClicked: !this.state.guestPickerClicked,
+        });
+    };
+
+    _onUpdateGuestPicker = ({guestCount, stringGuests}) => {
+        this.setState({
+            stringGuests,
+            guestCount,
+        });
+    };
+
+    _onChangeDates = ({startDate, endDate}) => {
         this.setState({
             startDate,
             endDate
         });
     };
 
-    _onFocusChange = focusedInput => {
+    _onChangeFocus = focusedInput => {
         this.setState({focusedInput});
     };
 
-    _updateStringGuests = () => {
-        const guestNumber = this.state.countAdult + this.state.countChildren;
-        const infantNumber = this.state.countInfant;
-        let stringGuests = guestNumber ? `게스트 ${guestNumber}명` : ``;
-        if (infantNumber) {
-            if (stringGuests) {
-                stringGuests += `, 유아 ${infantNumber}명`;
-            } else {
-                stringGuests += `유아 ${infantNumber}명`;
-            }
-        }
-        if (!stringGuests) {
-            stringGuests = '인원';
-        }
-
-        this.setState({
-            ...this.state,
-            stringGuests
-        });
-    };
-
-    _updateCount = (type, count) => {
-        this.setState({
-            ...this.state,
-            [type]: count,
-        }, this._updateStringGuests);
-    };
 }
 
-export default Container;
+export default withRouter(Container);

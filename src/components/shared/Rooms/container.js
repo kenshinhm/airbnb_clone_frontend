@@ -6,7 +6,7 @@ import * as PropTypes from "prop-types";
 class Room extends React.Component {
 
     static propTypes = {
-        city: PropTypes.string.isRequired,
+        query: PropTypes.string,
         guestCount: PropTypes.number,
         startPrice: PropTypes.number,
         endPrice: PropTypes.number,
@@ -16,7 +16,6 @@ class Room extends React.Component {
         updateApi: PropTypes.func,
         width: PropTypes.number,
     };
-
     static defaultProps = {
         offset: 0,
         width: 4,
@@ -25,16 +24,35 @@ class Room extends React.Component {
         endPrice: 200000,
     };
 
+    _isMounted = false;
+
     state = {
         loading: true,
         rooms: [],
     };
 
+    _setState = state => {
+        if (this._isMounted) {
+            this.setState(state);
+        }
+    };
+
+    componentWillUnmount() {
+        this._isMounted = false;
+    }
+
     componentDidMount() {
 
+        this._isMounted = true;
+
         const params = new URLSearchParams();
-        params.append('city', this.props.city);
-        params.append('capacity', this.props.guestCount.toString());
+        if (this.props.query) {
+            params.append('query', this.props.query);
+        }
+        if (this.props.guestCount) {
+            params.append('capacity', this.props.guestCount.toString());
+        }
+
         params.append('startPrice', this.props.startPrice.toString());
         params.append('endPrice', this.props.endPrice.toString());
         params.append('limit', this.props.limit.toString());
@@ -44,7 +62,7 @@ class Room extends React.Component {
            .then(response => {
                if (response.status === 200) {
                    // console.log(response);
-                   this.setState({
+                   this._setState({
                        rooms: this.state.rooms.concat(response.data.results),
                    });
 
@@ -53,7 +71,7 @@ class Room extends React.Component {
                    }
 
                    this.props.dispatchLoading(false);
-                   this.setState({
+                   this._setState({
                        loading: false,
                    });
 

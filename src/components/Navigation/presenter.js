@@ -21,7 +21,10 @@ const Navigation = (props) => (
                     <div className={styles.searchInner}>
                         <Search/>
                         <input className={styles.searchInput}
-                               placeholder={`Try "Seoul"`}/>
+                               placeholder={`Try "서울"`}
+                               onKeyPress={props.searchInputOnKeyPress}
+                               onChange={props.searchInputOnChange}
+                               value={props.searchQuery}/>
                     </div>
                 </div>
             </div>
@@ -33,6 +36,8 @@ const Navigation = (props) => (
 Navigation.propTypes = {
     isLoggedIn: PropTypes.bool.isRequired,
     dispatchLogout: PropTypes.func.isRequired,
+    searchInputOnChange: PropTypes.func.isRequired,
+    searchInputOnKeyPress: PropTypes.func.isRequired,
 };
 
 export default Navigation;

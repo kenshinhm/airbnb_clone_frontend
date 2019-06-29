@@ -9,12 +9,10 @@ const RoomsContainer = props => {
 
     let ret = [];
 
-    // console.log(props);
-
     for (let i = 0; i <= props.offset; i++) {
         ret.push(
             <Rooms key={i}
-                   city={props.city}
+                   query={props.query}
                    guestCount={props.guestCount}
                    startPrice={props.startPrice}
                    endPrice={props.endPrice}
@@ -36,19 +34,23 @@ const Presenter = props => {
     return (
         <div className={styles.container}>
             <SearchBar updateGuestCount={props.updateGuestCount}
-                       updatePrice={props.updatePrice}/>
+                       updatePrice={props.updatePrice}
+                       guestCount={props.guestCount}
+                       startDate={props.startDate}
+                       endDate={props.endDate}
+            />
             <div className={styles.header}>
                 <div className={styles.info}>
                     <img src={trophy} alt='info'/>
                     {
-                        `${props.city} 숙소에 대해
+                        `${props.query} 숙소에 대해
                         ${props.total_reviews}개의 게스트 후기가 있으며,
                         평점은 5점 만점에 ${props.average_rating}점, 
                         평균가격은 ￦${props.average_price.toLocaleString()}원 입니다`
                     }
                 </div>
                 <div className={styles.title}>
-                    {`${props.city}, ${props.count}개의 숙소`}
+                    {`${props.query}, ${props.count}개의 숙소`}
                 </div>
             </div>
             <div className={styles.body}>
@@ -59,7 +61,7 @@ const Presenter = props => {
 };
 
 Presenter.propTypes = {
-    city: PropTypes.string,
+    query: PropTypes.string,
     count: PropTypes.number,
     guestCount: PropTypes.number,
     limit: PropTypes.number,

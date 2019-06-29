@@ -9,11 +9,11 @@ const Presenter = props => {
     return (
         <div className={styles.container}>
             <header className={styles.header}>{props.title}</header>
-            <Rooms city={props.city}
+            <Rooms query={props.city}
                    limit={8}
                    dispatchLoading={props.dispatchLoading}
                    updateApi={props.updateApi}/>
-            <Link to={`${props.city}/rooms`} style={{textDecoration: 'none'}}>
+            <Link to={`rooms/${props.city}`} style={{textDecoration: 'none'}}>
                 <footer className={styles.footer}>
                     {`모두 보기(${props.count}개 이상)`}
                     <span style={{marginLeft: `10px`}}>

@@ -1,5 +1,5 @@
 import React from 'react';
-import Presenter from './presenter';
+import Presenter from './presenter.js';
 
 class Reservation extends React.Component {
 
@@ -33,7 +33,6 @@ class Reservation extends React.Component {
                        {...this.state}
                        onClickGuestPicker={this._onClickGuestPicker}
                        onUpdateGuestPicker={this._onUpdateGuestPicker}
-                       updateCount={this._updateCount}
                        onDatesChange={this._onDatesChange}
                        onFocusChange={this._onFocusChange}/>
         );
