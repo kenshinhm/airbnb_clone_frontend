@@ -22,6 +22,10 @@ class RoomByCity extends React.Component {
         this._isMounted = false;
     }
 
+    componentDidMount() {
+        this._isMounted = true;
+    }
+
     render() {
         return (
             <Presenter {...this.props}
