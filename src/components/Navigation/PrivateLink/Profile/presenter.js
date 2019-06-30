@@ -13,7 +13,8 @@ const Presenter = props => {
             </button>
             {
                 props.onProfile ?
-                    <ProfileMenu dispatchLogout={props.dispatchLogout}/>
+                    <ProfileMenu dispatchLogout={props.dispatchLogout}
+                                 triggerProfile={props.triggerProfile}/>
                     :
                     null
             }

@@ -1,0 +1,45 @@
+@import 'src/shared/variables';
+
+.container {
+    margin: 20px 10px;
+    display: flex;
+    flex-direction: column;
+    
+    .row {
+        display: flex;
+        align-items: center;
+        //justify-content: center;
+        
+        .index {
+            font-size: 20px;
+            font-weight: 600;
+            color: $medium-grey;
+            margin-right: 10px;
+        }
+        
+        .roomName {
+            font-size: 18px;
+            font-weight: 600;
+            color: $medium-grey;
+            margin-right: 10px;
+            line-height: 1.5em;
+            //word-wrap: break-word;
+        }
+        
+        .button {
+            @include warmRedButton(5);
+            padding: 2px 10px;
+            font-size: 10px;
+            margin-left: 10px;
+            width: 55px;
+        }
+        
+        .item {
+            font-size: 14px;
+            color: $medium-grey;
+            margin-top: 15px;
+            margin-left: 28px;
+        }
+    }
+    
+}
