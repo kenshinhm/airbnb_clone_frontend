@@ -6,8 +6,9 @@ import Photos from "./Photos/presenter.js";
 import Header from "./Header/presenter.js";
 import Description from "./Description/presenter.js";
 import Location from "./Location/presenter.js";
-import ReservationStatus from "./ReservationStatus/presenter.js";
+import ReservationStatus from "./ReservationStatus/container.js";
 import Reviews from "./Reviews/container.js";
+import * as PropTypes from "prop-types";
 
 
 const Presenter = props => {
@@ -33,7 +34,8 @@ const Presenter = props => {
                                  showInfo={props.showInfo}/>
                     <ReservationStatus onDatesUpdate={props.onDatesUpdate}
                                        startDate={props.startDate}
-                                       endDate={props.endDate}/>
+                                       endDate={props.endDate}
+                                       reservations={room.reservations}/>
                     <Reviews rating={room.rating}
                              reviews={room.reviews}
                              reviewCount={room.review_count}
@@ -47,13 +49,31 @@ const Presenter = props => {
                     <Reservation sticky={props.sticky}
                                  onDatesUpdate={props.onDatesUpdate}
                                  startDate={props.startDate}
-                                 endDate={props.endDate}/>
+                                 endDate={props.endDate}
+                                 roomId={props.id}
+                                 getApi={props.getApi}
+                                 reservations={room.reservations}
+                    />
                 </div>
             </div>
         </div>
     );
 };
 
-Presenter.propTypes = {};
+Presenter.propTypes = {
+    room: PropTypes.shape({
+        room_photos: PropTypes.arrayOf(
+            PropTypes.shape({
+                photo: PropTypes.string.isRequired,
+            })
+        ),
+        reservations: PropTypes.array,
+        location: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+        price: PropTypes.number.isRequired,
+        rating: PropTypes.string,
+        review_count: PropTypes.number,
+    }),
+};
 
 export default withLoading(Presenter);

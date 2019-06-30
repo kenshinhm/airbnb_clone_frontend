@@ -31,6 +31,7 @@ const Presenter = props => {
                         onDatesChange={props.onDatesChange}
                         focusedInput={props.focusedInput}
                         onFocusChange={props.onFocusChange}
+                        isDayBlocked={props.isDayBlocked}
                         numberOfMonths={1}
                     />
                 </div>
@@ -52,7 +53,8 @@ const Presenter = props => {
                 <div className={styles.formRow}>
                     <input className={styles.submitButton}
                            type='submit'
-                           value='예약하기'>
+                           value='예약하기'
+                           onClick={props.onClickSubmit}>
                     </input>
                 </div>
             </form>
@@ -66,6 +68,8 @@ Presenter.propTypes = {
     onUpdateGuestPicker: PropTypes.func.isRequired,
     onDatesChange: PropTypes.func.isRequired,
     onFocusChange: PropTypes.func.isRequired,
+    onClickSubmit: PropTypes.func.isRequired,
+    isDayBlocked: PropTypes.func.isRequired,
 };
 
 export default Presenter;

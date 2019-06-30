@@ -45,6 +45,7 @@ RoomCard.propTypes = {
                 photo: PropTypes.string.isRequired,
             })
         ),
+        reservations: PropTypes.array,
         location: PropTypes.string.isRequired,
         name: PropTypes.string.isRequired,
         price: PropTypes.number.isRequired,

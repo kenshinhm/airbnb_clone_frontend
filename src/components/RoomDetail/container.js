@@ -17,7 +17,13 @@ class RoomDetail extends React.Component {
 
     _getApi = () => {
         this.setState({
+            room: {},
             loading: true,
+            showInfo: false,
+            lastScrollY: 0,
+            sticky: false,
+            startDate: null,
+            endDate: null,
         });
 
         api.get(`rooms/${this.state.id}/`)
@@ -42,6 +48,8 @@ class RoomDetail extends React.Component {
         this.setState({
             id,
         }, () => this._getApi());
+
+        window.scrollTo(0, 0);
     }
 
     componentWillUnmount() {
