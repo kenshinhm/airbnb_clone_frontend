@@ -154,7 +154,6 @@ class Container extends React.Component {
                 api.post(`rooms/${roomId}/reservation/`, data)
                    .then(response => {
                        if (response.status === 201) {
-                           console.log(response);
                            this.props.getApi();
                        } else {
                            console.log(`${response.status}: ${response.statusText}`);
