@@ -2,8 +2,8 @@
 import {RESIZE, LOADING} from "redux/dom/actionTypes.js";
 
 const phoneWidth = 510;
-const tabletWidth = 850;
-const laptopWidth = 1200;
+const tabletWidth = 768;
+const laptopWidth = 1024;
 
 const initialState = {
     width: 0,

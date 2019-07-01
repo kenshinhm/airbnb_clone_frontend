@@ -10,7 +10,7 @@ const Presenter = props => {
         <div className={styles.container}>
             <header className={styles.header}>{props.title}</header>
             <Rooms query={props.city}
-                   limit={8}
+                   limit={props.limit}
                    dispatchLoading={props.dispatchLoading}
                    updateApi={props.updateApi}/>
             <Link to={`rooms/${props.city}`} style={{textDecoration: 'none'}}>

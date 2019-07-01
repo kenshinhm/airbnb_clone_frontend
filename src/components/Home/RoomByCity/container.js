@@ -1,11 +1,13 @@
 import React from 'react';
 import Presenter from "./presenter.js";
 
+
 class RoomByCity extends React.Component {
 
     _isMounted = false;
     state = {
         count: 0,
+        limit: 8,
     };
 
     _setState = (state, callback) => {

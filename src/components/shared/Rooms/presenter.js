@@ -6,11 +6,12 @@ import PropTypes from "prop-types";
 import withLoading from "components/shared/Loading/loading.js";
 import {Link} from "react-router-dom";
 
-const cardWidth = (width) => {
-    return ({
-        width: `calc(${100.0 / width}% - 30px)`,
-    });
-};
+// const cardWidth = (width) => {
+//     console.log(width);
+//     return ({
+//         width: `calc(${100.0 / width}% - 30px)`,
+//     });
+// };
 
 
 const RoomCard = props => {
@@ -25,7 +26,7 @@ const RoomCard = props => {
     }
 
     return (
-        <div style={cardWidth(props.width)} className={styles.card}>
+        <div className={styles.card}>
             <Link to={`/room/${room.id}`}>
                 <div style={{backgroundImage: `url(${room_photo})`}}
                      className={styles.imgContainer}/>

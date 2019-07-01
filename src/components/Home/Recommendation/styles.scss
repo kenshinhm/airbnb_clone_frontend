@@ -1,4 +1,4 @@
-@import "../../../shared/variables";
+@import "src/shared/variables";
 
 .container {
     margin-top: 80px;
@@ -87,7 +87,7 @@
 
 .laptop {
     margin-right: 15px;
-    width: calc(33.4% - 15px);
+    width: calc(33.33% - 15px);
 }
 
 .tablet {

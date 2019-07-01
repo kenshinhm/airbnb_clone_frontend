@@ -45,6 +45,7 @@ class Home extends React.Component {
     componentDidMount() {
         window.addEventListener('resize', this._resize);
         window.addEventListener('scroll', this._scroll);
+        this._resize();
     }
 
     componentWillUnmount() {

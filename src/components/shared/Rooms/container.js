@@ -3,6 +3,7 @@ import Presenter from './presenter.js';
 import api from 'api.js';
 import * as PropTypes from "prop-types";
 
+
 class Room extends React.Component {
 
     static propTypes = {

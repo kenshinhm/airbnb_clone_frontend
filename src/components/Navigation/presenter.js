@@ -11,14 +11,14 @@ import {Link} from "react-router-dom";
 const Navigation = (props) => (
     <div className={styles.container}>
         <div className={styles.navigation}>
-            <div className={styles.columnLogo}>
-                <Link to={'/'}>
-                    <Logo className={styles.logo}/>
-                </Link>
-            </div>
-            <div className={styles.columnSearch}>
-                <div className={styles.searchBox}>
-                    <div className={styles.searchInner}>
+            <div className={styles.column}>
+                <div className={styles.columnLogo}>
+                    <Link to={'/'}>
+                        <Logo className={styles.logo}/>
+                    </Link>
+                </div>
+                <div className={styles.columnSearch}>
+                    <div className={styles.searchBox}>
                         <Search/>
                         <input className={styles.searchInput}
                                placeholder={`Try "서울"`}

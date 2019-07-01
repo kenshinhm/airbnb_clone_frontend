@@ -24,9 +24,6 @@ class Presenter extends React.Component {
                 <div className={styles.header}>
                     <div className={styles.image}>
                         <Reservation/>
-                        <span className={styles.text}>
-                            웨스트 레이크 힐스테이트<br/>미국 텍사스 오스틴
-                        </span>
                     </div>
                 </div>
                 <div className={styles.body}>
