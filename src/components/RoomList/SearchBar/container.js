@@ -147,7 +147,8 @@ class SearchBar extends React.Component {
             this.setState({
                 pricePickerClicked: false,
             });
-            if (this.state.endPrice !== 0) {
+            if (this.state.startPrice > 0
+                && this.state.endPrice < 200000) {
                 this.setState({
                     pricePickerOn: true,
                 });

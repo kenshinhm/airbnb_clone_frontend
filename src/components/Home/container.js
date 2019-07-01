@@ -54,7 +54,7 @@ class Home extends React.Component {
         const body = document.body;
         const html = document.documentElement;
         const docHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
-        const windowBottom = windowHeight + window.pageYOffset;
+        const windowBottom = Math.round(windowHeight + window.pageYOffset);
 
         if (windowBottom >= docHeight && !this.props.loading) {
 
@@ -76,30 +76,6 @@ class Home extends React.Component {
 
             }
         }
-
-        // const element = document.documentElement;
-
-        // if (element.scrollHeight - element.scrollTop
-        //     === element.clientHeight && !this.props.loading) {
-        //
-        //     // console.log('here');
-        //
-        //     let nextCityIndex = this.state.nextCityIndex;
-        //
-        //     if (nextCityIndex < this.state.cityList.length) {
-        //
-        //         this.props.dispatchLoading(true);
-        //
-        //         const nextCity = this.state.cityList[nextCityIndex];
-        //         let renderCity = this.state.renderCity;
-        //         renderCity.push(nextCity);
-        //
-        //         this.setState({renderCity});
-        //
-        //         nextCityIndex = Math.min(this.state.nextCityIndex + 1,
-        //             this.state.cityList.length);
-        //         this.setState({nextCityIndex});
-        //     }
     };
 
     render() {

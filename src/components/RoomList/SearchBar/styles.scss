@@ -43,18 +43,28 @@
             position: fixed;
             top: 130px;
             left: 80px;
+            
+            @include breakpoint("phone") {
+                left: 20px;
+            }
         }
         
         .guestPickerModal {
             position: fixed;
             top: 50px;
             left: 137px;
+            @include breakpoint("phone") {
+                left: 20px;
+            }
         }
         
         .pricePickerModal {
             position: fixed;
             top: 130px;
             left: 197px;
+            @include breakpoint("phone") {
+                left: 20px;
+            }
         }
     }
 }

@@ -159,11 +159,13 @@ class RoomList extends React.Component {
 
     _scroll = () => {
 
-        const element = document.documentElement;
+        const windowHeight = "innerHeight" in window ? window.innerHeight : document.documentElement.offsetHeight;
+        const body = document.body;
+        const html = document.documentElement;
+        const docHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
+        const windowBottom = Math.round(windowHeight + window.pageYOffset);
 
-        if (element.scrollHeight - element.scrollTop
-            === element.clientHeight && !this.props.loading) {
-
+        if (windowBottom >= docHeight && !this.props.loading) {
             this.props.dispatchLoading(true);
 
             const count = this.state.count;

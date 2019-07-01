@@ -40,7 +40,7 @@ const Presenter = props => {
                             <DayPickerRange onDatesUpdate={props.onUpdateDayPicker}
                                             startDate={props.startDate}
                                             endDate={props.endDate}
-                                            numberOfMonths={2}
+                                            numberOfMonths={1}
                                             hideKeyboardShortcutsPanel={true}/>
                         </div>
                     </div>
