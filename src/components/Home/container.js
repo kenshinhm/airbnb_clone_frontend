@@ -1,13 +1,12 @@
 import React from 'react';
 import Presenter from "./presenter.js";
 import * as PropTypes from "prop-types";
-import {dispatchLoading, dispatchResize} from "redux/dom/actions.js";
+import {dispatchLoading} from "redux/dom/actions.js";
 import {connect} from "react-redux";
 
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        dispatchResize: (width) => dispatch(dispatchResize(width)),
         dispatchLoading: (status) => dispatch(dispatchLoading(status)),
     };
 };
@@ -23,7 +22,6 @@ const mapStateToProps = (state, ownProps) => {
 class Home extends React.Component {
 
     static propTypes = {
-        dispatchResize: PropTypes.func.isRequired,
         dispatchLoading: PropTypes.func.isRequired,
         loading: PropTypes.bool.isRequired,
     };
@@ -43,29 +41,22 @@ class Home extends React.Component {
     };
 
     componentDidMount() {
-        window.addEventListener('resize', this._resize);
         window.addEventListener('scroll', this._scroll);
-        this._resize();
     }
 
     componentWillUnmount() {
-        window.removeEventListener('resize', this._resize);
         window.removeEventListener('scroll', this._scroll);
     }
 
-    _resize = () => {
-        const width = window.outerWidth;
-        this.props.dispatchResize(width);
-    };
-
     _scroll = () => {
 
-        const element = document.documentElement;
+        const windowHeight = "innerHeight" in window ? window.innerHeight : document.documentElement.offsetHeight;
+        const body = document.body;
+        const html = document.documentElement;
+        const docHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
+        const windowBottom = windowHeight + window.pageYOffset;
 
-        if (element.scrollHeight - element.scrollTop
-            === element.clientHeight && !this.props.loading) {
-
-            // console.log('here');
+        if (windowBottom >= docHeight && !this.props.loading) {
 
             let nextCityIndex = this.state.nextCityIndex;
 
@@ -82,8 +73,33 @@ class Home extends React.Component {
                 nextCityIndex = Math.min(this.state.nextCityIndex + 1,
                     this.state.cityList.length);
                 this.setState({nextCityIndex});
+
             }
         }
+
+        // const element = document.documentElement;
+
+        // if (element.scrollHeight - element.scrollTop
+        //     === element.clientHeight && !this.props.loading) {
+        //
+        //     // console.log('here');
+        //
+        //     let nextCityIndex = this.state.nextCityIndex;
+        //
+        //     if (nextCityIndex < this.state.cityList.length) {
+        //
+        //         this.props.dispatchLoading(true);
+        //
+        //         const nextCity = this.state.cityList[nextCityIndex];
+        //         let renderCity = this.state.renderCity;
+        //         renderCity.push(nextCity);
+        //
+        //         this.setState({renderCity});
+        //
+        //         nextCityIndex = Math.min(this.state.nextCityIndex + 1,
+        //             this.state.cityList.length);
+        //         this.setState({nextCityIndex});
+        //     }
     };
 
     render() {
