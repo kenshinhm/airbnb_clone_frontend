@@ -1,8 +1,21 @@
 import React from 'react';
 import Presenter from "./presenter.js";
 import api from "api.js";
+import * as PropType from "prop-types";
+import {connect} from 'react-redux';
+
+const mapStateToProps = (state, ownProps) => {
+    const {dom: {device}} = state;
+    return {
+        device
+    };
+};
 
 class RoomDetail extends React.Component {
+
+    static propTypes = {
+        device: PropType.string,
+    };
 
     state = {
         room: {},
@@ -13,6 +26,7 @@ class RoomDetail extends React.Component {
         startDate: null,
         endDate: null,
         id: null,
+        device: '',
     };
 
     _getApi = () => {
@@ -66,6 +80,14 @@ class RoomDetail extends React.Component {
         );
     }
 
+    componentWillReceiveProps(nextProps, nextContext) {
+        if (nextProps.device) {
+            this.setState({
+                device: nextProps.device,
+            });
+        }
+    }
+
     _onClickInfo = (evt) => {
         evt.preventDefault();
         this.setState({
@@ -92,4 +114,4 @@ class RoomDetail extends React.Component {
     };
 }
 
-export default RoomDetail;
+export default connect(mapStateToProps, null)(RoomDetail);

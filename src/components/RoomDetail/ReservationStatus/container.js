@@ -12,6 +12,7 @@ class Container extends React.Component {
         startDate: momentPropTypes.momentObj,
         endDate: momentPropTypes.momentObj,
         reservations: PropTypes.array,
+        device: PropTypes.string,
     };
 
     state = {

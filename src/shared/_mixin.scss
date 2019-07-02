@@ -15,8 +15,16 @@ $phone-width: 510px;
         @media (min-width: #{$tablet-width}) and (max-width: #{$desktop-width}) {
             @content;
         }
+    } @else if $breakpoint == "below_laptop" {
+        @media (max-width: #{$desktop-width}) {
+            @content;
+        }
     } @else if $breakpoint == "tablet" {
         @media (min-width: #{$phone-width}) and (max-width: #{$tablet-width}) {
+            @content;
+        }
+    } @else if $breakpoint == "below_tablet" {
+        @media (max-width: #{$tablet-width}) {
             @content;
         }
     } @else if $breakpoint == "phone" {

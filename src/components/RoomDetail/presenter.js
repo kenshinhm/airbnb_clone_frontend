@@ -35,7 +35,18 @@ const Presenter = props => {
                     <ReservationStatus onDatesUpdate={props.onDatesUpdate}
                                        startDate={props.startDate}
                                        endDate={props.endDate}
-                                       reservations={room.reservations}/>
+                                       reservations={room.reservations}
+                                       device={props.device}/>
+                    <div className={styles.responsiveReservation}>
+                        <Reservation onDatesUpdate={props.onDatesUpdate}
+                                     startDate={props.startDate}
+                                     endDate={props.endDate}
+                                     roomId={props.id}
+                                     getApi={props.getApi}
+                                     reservations={room.reservations}
+                                     device={props.device}
+                        />
+                    </div>
                     <Reviews rating={room.rating}
                              reviews={room.reviews}
                              reviewCount={room.review_count}
@@ -53,6 +64,7 @@ const Presenter = props => {
                                  roomId={props.id}
                                  getApi={props.getApi}
                                  reservations={room.reservations}
+                                 device={props.device}
                     />
                 </div>
             </div>
@@ -74,6 +86,7 @@ Presenter.propTypes = {
         rating: PropTypes.string,
         review_count: PropTypes.number,
     }),
+    device: PropTypes.string,
 };
 
 export default withLoading(Presenter);

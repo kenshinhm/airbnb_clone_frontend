@@ -1,3 +1,5 @@
+@import "src/shared/_variables.scss";
+
 .container {
     position: relative;
     display: flex;
@@ -8,6 +10,19 @@
         width: 50%;
         border: 1px solid black;
         overflow: hidden;
+        
+        @include breakpoint("laptop") {
+            width: 100%;
+            border: none;
+        }
+        @include breakpoint("tablet") {
+            width: 100%;
+            border: none;
+        }
+        @include breakpoint("phone") {
+            width: 100%;
+            border: none;
+        }
         
         .img {
             
@@ -24,6 +39,15 @@
     .sub-image {
         width: 50%;
         display: flex;
+        @include breakpoint("laptop") {
+            display: none;
+        }
+        @include breakpoint("tablet") {
+            display: none;
+        }
+        @include breakpoint("phone") {
+            display: none;
+        }
         flex-wrap: wrap;
         
         .sub-image-wrap {

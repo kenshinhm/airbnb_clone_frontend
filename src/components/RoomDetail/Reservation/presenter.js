@@ -11,12 +11,19 @@ import GuestPicker from "components/shared/GuestPicker/container.js";
 
 const Presenter = props => {
 
-    const position = props.sticky ? 'fixed' : 'relative';
-    const top = props.sticky ? '105px' : '25px';
+    let position = props.sticky ? 'sticky' : 'relative';
+    let top = props.sticky ? '105px' : '25px';
+
+    if (props.device === 'laptop'
+        || props.device === 'tablet'
+        || props.device === 'phone') {
+        position = 'relative';
+        top = 'inherit';
+    }
 
     return (
-        <div className={styles.container}
-             style={{position: position, top: top}}>
+        <div style={{position: position, top: top}}
+             className={styles.container}>
             <p>요금을 확인하려면 날짜를 입력하세요</p>
             <form className={styles.form}>
                 <div className={styles.formRow} style={{position: 'relative'}}>
