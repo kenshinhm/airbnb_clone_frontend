@@ -175,6 +175,7 @@ class DayPickerRange extends React.Component {
                     focusedInput={focusedInput}
                     startDate={startDate}
                     endDate={endDate}
+                    readOnly={true}
                 />
             </div>
         );

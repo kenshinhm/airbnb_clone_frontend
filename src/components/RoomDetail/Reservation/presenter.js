@@ -40,6 +40,7 @@ const Presenter = props => {
                         onFocusChange={props.onFocusChange}
                         isDayBlocked={props.isDayBlocked}
                         numberOfMonths={1}
+                        readOnly={true}
                     />
                 </div>
                 <div className={styles.formRow}>

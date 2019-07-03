@@ -35,6 +35,7 @@ const Presenter = props => {
                         focusedInput={props.focusedInput}
                         onFocusChange={props.onChangeFocus}
                         numberOfMonths={1}
+                        readOnly={true}
                     />
                 </div>
                 <div className={styles.formRow}>
