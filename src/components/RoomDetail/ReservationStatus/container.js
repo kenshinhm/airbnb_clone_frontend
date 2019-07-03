@@ -19,6 +19,10 @@ class Container extends React.Component {
         reservationLists: [],
     };
 
+    componentDidMount() {
+        window.scrollTo(0, 0);
+    }
+
     componentWillMount() {
 
         let reservationLists = [];

@@ -89,6 +89,10 @@ class RoomList extends React.Component {
         window.removeEventListener('scroll', this._scroll);
     }
 
+    componentDidMount() {
+        window.scrollTo(0, 0);
+    }
+
     componentWillReceiveProps(nextProps, nextContext) {
 
         const {match: {params: {query}}} = nextProps;
