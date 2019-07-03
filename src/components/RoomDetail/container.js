@@ -26,7 +26,6 @@ class RoomDetail extends React.Component {
         startDate: null,
         endDate: null,
         id: null,
-        device: '',
     };
 
     _getApi = () => {
@@ -78,14 +77,6 @@ class RoomDetail extends React.Component {
                        onDatesUpdate={this._onDatesUpdate}
                        getApi={this._getApi}/>
         );
-    }
-
-    componentWillReceiveProps(nextProps, nextContext) {
-        if (nextProps.device) {
-            this.setState({
-                device: nextProps.device,
-            });
-        }
     }
 
     _onClickInfo = (evt) => {

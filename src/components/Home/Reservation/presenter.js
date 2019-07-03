@@ -34,6 +34,7 @@ const Presenter = props => {
                         onDatesChange={props.onChangeDates}
                         focusedInput={props.focusedInput}
                         onFocusChange={props.onChangeFocus}
+                        numberOfMonths={1}
                     />
                 </div>
                 <div className={styles.formRow}>
