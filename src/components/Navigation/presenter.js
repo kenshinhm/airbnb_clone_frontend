@@ -13,7 +13,7 @@ const Navigation = (props) => (
         <div className={styles.navigation}>
             <div className={styles.column}>
                 <div className={styles.columnLogo}>
-                    <Link to={'/'}>
+                    <Link to={'/'} onClick={() => window.location.refresh()}>
                         <Logo className={styles.logo}/>
                     </Link>
                 </div>
